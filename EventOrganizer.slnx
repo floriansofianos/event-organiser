@@ -1,0 +1,17 @@
+<Solution>
+  <Project Path="docker-compose.dcproj">
+    <Build />
+  </Project>
+  <Folder Name="/src/">
+    <Project Path="src/EventOrganizer.API/EventOrganizer.API.csproj" />
+    <Project Path="src/EventOrganizer.Application/EventOrganizer.Application.csproj" />
+    <Project Path="src/EventOrganizer.Domain/EventOrganizer.Domain.csproj" />
+    <Project Path="src/EventOrganizer.Infrastructure/EventOrganizer.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/frontend/">
+    <Project Path="frontend/EventOrganizer.Frontend.esproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/EventOrganizer.Application.Tests/EventOrganizer.Application.Tests.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,36 @@
+services:
+  postgres:
+    ports:
+      - "5432:5432"
+
+  api:
+    build:
+      args:
+        configuration: Debug
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTP_PORTS: "8080"
+      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=eventorganizer;Username=postgres;Password=postgres"
+      Jwt__Secret: DEV_SECRET_KEY_CHANGE_IN_PRODUCTION_32C
+      Jwt__Issuer: EventOrganizer
+      Jwt__Audience: EventOrganizer
+      FrontendUrl: http://localhost:3000
+      Smtp__Host: mailhog
+      Smtp__Port: "1025"
+      Smtp__UseSsl: "false"
+    ports:
+      - "5000:8080"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+
+  frontend:
+    ports:
+      - "3000:80"
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: eventorganizer_mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
