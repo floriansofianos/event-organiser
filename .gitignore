@@ -491,3 +491,7 @@ frontend/.env
 
 # JetBrains
 .idea/
+
+# Claude
+CLAUDE.md
+.claude/
