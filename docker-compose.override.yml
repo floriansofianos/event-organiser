@@ -6,7 +6,7 @@ services:
   api:
     build:
       args:
-        configuration: Debug
+        BUILD_CONFIGURATION: Debug
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_HTTP_PORTS: "8080"

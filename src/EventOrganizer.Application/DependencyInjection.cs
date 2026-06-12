@@ -19,6 +19,8 @@ public static class DependencyInjection
             sp.GetRequiredService<IEmailService>(),
             frontendUrl));
 
+        services.AddScoped<IEventService, EventService>();
+
         return services;
     }
 }

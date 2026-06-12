@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   AppBar, Box, Button, Container, Paper, Toolbar, Typography,
 } from '@mui/material'
+import EventIcon from '@mui/icons-material/Event'
 import { useAuth } from '../context/AuthContext'
 import { getMe, type UserDto } from '../api/auth'
 
 export default function DashboardPage() {
   const { user, logout } = useAuth()
+  const navigate = useNavigate()
   const [profile, setProfile] = useState<UserDto | null>(null)
 
   useEffect(() => {
@@ -34,6 +37,15 @@ export default function DashboardPage() {
                 <Typography><strong>Email confirmed:</strong> {profile.isEmailConfirmed ? 'Yes' : 'No'}</Typography>
               </Box>
             )}
+            <Box sx={{ mt: 3 }}>
+              <Button
+                variant="contained"
+                startIcon={<EventIcon />}
+                onClick={() => navigate('/events')}
+              >
+                My Events
+              </Button>
+            </Box>
           </Paper>
         </Box>
       </Container>

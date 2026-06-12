@@ -20,7 +20,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: docker/api.Dockerfile
+      dockerfile: src/EventOrganizer.API/Dockerfile
     container_name: eventorganizer_api
     restart: unless-stopped
     ports:

@@ -5,7 +5,7 @@
     <DockerTargetOS>Linux</DockerTargetOS>
     <ProjectGuid>{4F8044B9-C65D-4D13-BF14-FBA9828A566A}</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
+    <DockerServiceUrl>http://localhost:3000</DockerServiceUrl>
     <DockerServiceName>api</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
@@ -13,6 +13,17 @@
     <None Include="docker-compose.override.yml">
       <DependentUpon>docker-compose.yml</DependentUpon>
     </None>
+    <None Include="docker-compose.vs.debug.yml">
+      <DependentUpon>docker-compose.yml</DependentUpon>
+    </None>
     <None Include=".env.example" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="src\EventOrganizer.API\EventOrganizer.API.csproj">
+      <AdditionalProperties>ComposeServiceName=api</AdditionalProperties>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\EventOrganizer.API\Dockerfile" />
   </ItemGroup>
 </Project>
