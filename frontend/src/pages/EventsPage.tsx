@@ -3,13 +3,14 @@ import { useNavigate } from 'react-router-dom'
 import {
   AppBar, Box, Button, Chip, Container, IconButton, Paper,
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
-  Toolbar, Typography, Dialog, DialogActions, DialogContent,
+  Toolbar, Tooltip, Typography, Dialog, DialogActions, DialogContent,
   DialogContentText, DialogTitle, Alert,
 } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit'
 import CancelIcon from '@mui/icons-material/Cancel'
 import AddIcon from '@mui/icons-material/Add'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import RoomIcon from '@mui/icons-material/Room'
 import { getEvents, cancelEvent, type EventDto } from '../api/events'
 import { getErrorMessage } from '../utils/error'
 import { useAuth } from '../context/AuthContext'
@@ -99,7 +100,26 @@ export default function EventsPage() {
                   <TableRow key={event.id} hover>
                     <TableCell>{event.name}</TableCell>
                     <TableCell>{formatDate(event.date)}</TableCell>
-                    <TableCell>{event.location ?? '—'}</TableCell>
+                    <TableCell>
+                      {event.location ? (
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                          <Box component="span" sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 180 }}>
+                            {event.location}
+                          </Box>
+                          <Tooltip title="View on map">
+                            <IconButton
+                              size="small"
+                              component="a"
+                              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.location)}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <RoomIcon fontSize="small" />
+                            </IconButton>
+                          </Tooltip>
+                        </Box>
+                      ) : '—'}
+                    </TableCell>
                     <TableCell>
                       <Chip
                         label={event.status}

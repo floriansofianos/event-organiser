@@ -7,6 +7,7 @@ import {
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { createEvent } from '../api/events'
 import { getErrorMessage } from '../utils/error'
+import LocationAutocomplete from '../components/LocationAutocomplete'
 
 export default function CreateEventPage() {
   const navigate = useNavigate()
@@ -69,11 +70,9 @@ export default function CreateEventPage() {
                 fullWidth
                 InputLabelProps={{ shrink: true }}
               />
-              <TextField
-                label="Location"
+              <LocationAutocomplete
                 value={location}
-                onChange={(e) => setLocation(e.target.value)}
-                fullWidth
+                onChange={setLocation}
                 placeholder="Optional"
               />
               <TextField

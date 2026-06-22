@@ -7,6 +7,7 @@ import {
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { getEvents, updateEvent } from '../api/events'
 import { getErrorMessage } from '../utils/error'
+import LocationAutocomplete from '../components/LocationAutocomplete'
 
 function toDatetimeLocal(iso: string) {
   const d = new Date(iso)
@@ -101,11 +102,9 @@ export default function EditEventPage() {
                 fullWidth
                 InputLabelProps={{ shrink: true }}
               />
-              <TextField
-                label="Location"
+              <LocationAutocomplete
                 value={location}
-                onChange={(e) => setLocation(e.target.value)}
-                fullWidth
+                onChange={setLocation}
               />
               <TextField
                 label="Description"
